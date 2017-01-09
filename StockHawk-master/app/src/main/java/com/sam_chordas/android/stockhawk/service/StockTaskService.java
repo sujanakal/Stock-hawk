@@ -6,7 +6,9 @@ import android.content.OperationApplicationException;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.os.RemoteException;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
+
 import com.google.android.gms.gcm.GcmNetworkManager;
 import com.google.android.gms.gcm.GcmTaskService;
 import com.google.android.gms.gcm.TaskParams;
@@ -108,6 +110,7 @@ public class StockTaskService extends GcmTaskService{
     String getResponse;
     int result = GcmNetworkManager.RESULT_FAILURE;
 
+
     if (urlStringBuilder != null){
       urlString = urlStringBuilder.toString();
       try{
@@ -121,8 +124,15 @@ public class StockTaskService extends GcmTaskService{
             mContext.getContentResolver().update(QuoteProvider.Quotes.CONTENT_URI, contentValues,
                 null, null);
           }
-          mContext.getContentResolver().applyBatch(QuoteProvider.AUTHORITY,
-              Utils.quoteJsonToContentVals(getResponse));
+
+          if(Utils.quoteJsonToContentVals(getResponse).get(0) != null){
+            mContext.getContentResolver().applyBatch(QuoteProvider.AUTHORITY,
+                    Utils.quoteJsonToContentVals(getResponse));
+          }else{
+            result = GcmNetworkManager.RESULT_FAILURE;
+          }
+         /* mContext.getContentResolver().applyBatch(QuoteProvider.AUTHORITY,
+              Utils.quoteJsonToContentVals(getResponse));*/
         }catch (RemoteException | OperationApplicationException e){
           Log.e(LOG_TAG, "Error applying batch insert", e);
         }

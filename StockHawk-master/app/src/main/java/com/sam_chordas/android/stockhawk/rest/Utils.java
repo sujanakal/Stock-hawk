@@ -1,13 +1,21 @@
 package com.sam_chordas.android.stockhawk.rest;
 
 import android.content.ContentProviderOperation;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.widget.Toast;
+
 import com.sam_chordas.android.stockhawk.data.QuoteColumns;
 import com.sam_chordas.android.stockhawk.data.QuoteProvider;
+import com.sam_chordas.android.stockhawk.service.StockIntentService;
+import com.sam_chordas.android.stockhawk.service.StockTaskService;
+
 import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import static java.lang.System.exit;
 
 /**
  * Created by sam_chordas on 10/8/15.
@@ -75,21 +83,38 @@ public class Utils {
         QuoteProvider.Quotes.CONTENT_URI);
     try {
       String change = jsonObject.getString("Change");
-      builder.withValue(QuoteColumns.SYMBOL, jsonObject.getString("symbol"));
+      if(change != "null" && change != null){
+        builder.withValue(QuoteColumns.SYMBOL, jsonObject.getString("symbol"));
+        Log.d("UTILS",jsonObject.getString("Bid"));
+        builder.withValue(QuoteColumns.BIDPRICE, truncateBidPrice(jsonObject.getString("Bid")));
+        builder.withValue(QuoteColumns.PERCENT_CHANGE, truncateChange(
+                jsonObject.getString("ChangeinPercent"), true));
+        builder.withValue(QuoteColumns.CHANGE, truncateChange(change, false));
+        builder.withValue(QuoteColumns.ISCURRENT, 1);
+        if (change.charAt(0) == '-'){
+          builder.withValue(QuoteColumns.ISUP, 0);
+        }else{
+          builder.withValue(QuoteColumns.ISUP, 1);
+        }
+
+        return builder.build();
+      }
+      /*builder.withValue(QuoteColumns.SYMBOL, jsonObject.getString("symbol"));
+        Log.d("UTILS",jsonObject.getString("Bid"));
       builder.withValue(QuoteColumns.BIDPRICE, truncateBidPrice(jsonObject.getString("Bid")));
       builder.withValue(QuoteColumns.PERCENT_CHANGE, truncateChange(
-          jsonObject.getString("ChangeinPercent"), true));
+                jsonObject.getString("ChangeinPercent"), true));
       builder.withValue(QuoteColumns.CHANGE, truncateChange(change, false));
       builder.withValue(QuoteColumns.ISCURRENT, 1);
       if (change.charAt(0) == '-'){
-        builder.withValue(QuoteColumns.ISUP, 0);
+          builder.withValue(QuoteColumns.ISUP, 0);
       }else{
-        builder.withValue(QuoteColumns.ISUP, 1);
-      }
+          builder.withValue(QuoteColumns.ISUP, 1);
+      }*/
 
     } catch (JSONException e){
       e.printStackTrace();
     }
-    return builder.build();
+    return null;
   }
 }

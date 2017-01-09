@@ -19,6 +19,9 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.sam_chordas.android.stockhawk.R;
@@ -64,6 +67,15 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
     isConnected = activeNetwork != null &&
         activeNetwork.isConnectedOrConnecting();
     setContentView(R.layout.activity_my_stocks);
+
+      RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+      recyclerView.setLayoutManager(new LinearLayoutManager(this));
+      getLoaderManager().initLoader(CURSOR_LOADER_ID, null, this);
+
+     // TextView emptyView = (TextView) findViewById(R.id.emptyView);
+      LinearLayout linearLayout = (LinearLayout) findViewById(R.id.emptyLinearLayout);
+
+
     // The intent service is for executing immediate pulls from the Yahoo API
     // GCMTaskService can only schedule tasks, they cannot execute immediately
     mServiceIntent = new Intent(this, StockIntentService.class);
@@ -71,27 +83,41 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
       // Run the initialize task service so that some stocks appear upon an empty database
       mServiceIntent.putExtra("tag", "init");
       if (isConnected){
+          recyclerView.setVisibility(View.VISIBLE);
+          linearLayout.setVisibility(View.GONE);
+       //   emptyView.setVisibility(View.GONE);
         startService(mServiceIntent);
       } else{
-        networkToast();
+          recyclerView.setVisibility(View.GONE);
+          linearLayout.setVisibility(View.VISIBLE);
+       //   emptyView.setVisibility(View.VISIBLE);
       }
     }
-    RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+
+    /*RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
     recyclerView.setLayoutManager(new LinearLayoutManager(this));
-    getLoaderManager().initLoader(CURSOR_LOADER_ID, null, this);
+    getLoaderManager().initLoader(CURSOR_LOADER_ID, null, this);*/
 
     mCursorAdapter = new QuoteCursorAdapter(this, null);
     recyclerView.addOnItemTouchListener(new RecyclerViewItemClickListener(this,
             new RecyclerViewItemClickListener.OnItemClickListener() {
               @Override public void onItemClick(View v, int position) {
                 //TODO:
-                // do something on item click
+                mCursor.moveToFirst();
+                mCursor.move(position);
+
+                Intent detailIntent = new Intent(mContext,MyStocksDetailActivity.class);
+                detailIntent.putExtra("Stock_Symbol",mCursor.getString(mCursor.getColumnIndex("symbol")));
+                startActivity(detailIntent);
               }
             }));
     recyclerView.setAdapter(mCursorAdapter);
 
 
     FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+      /*//fab.setBackgroundColor(getResources().getColor(R.color.amber_500));
+      fab.setColorNormal(R.color.amber_500);
+      fab.setColorPressed(R.color.amber_600);*/
     fab.attachToRecyclerView(recyclerView);
     fab.setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {

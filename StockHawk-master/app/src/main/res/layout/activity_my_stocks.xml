@@ -1,9 +1,11 @@
 
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fab="http://schemas.android.com/tools"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    style="@style/BaseLayoutStyle"
+    android:id="@+id/baseFrameLayout"
     >
 
   <android.support.v7.widget.RecyclerView
@@ -19,12 +21,24 @@
       android:layout_gravity="bottom|right"
       android:layout_margin="16dp"
       android:src="@drawable/ic_add_white_24dp"
-      fab:fab_colorNormal="@color/material_blue_500"
-      fab:fab_colorPressed="@color/material_blue_600"
-      fab:fab_colorRipple="@color/ripple"
+      fab:fab_colorNormal="@color/amber_500"
+      fab:fab_colorPressed="@color/amber_600"
       fab:fab_shadow="true"
       fab:fab_type="normal"
-      fab:layout_anchor="recycler_view"
-      fab:layout_anchorGravity="bottom | end"
       />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/emptyLinearLayout"
+        android:visibility="gone">
+        <TextView
+            android:id="@+id/emptyView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/empty_textview_text"
+            style="@style/EmptyViewStyle" />
+    </LinearLayout>
+
 </FrameLayout>
+
