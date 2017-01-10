@@ -4,8 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
@@ -37,9 +40,10 @@ import retrofit2.Response;
  * Created by Suj🌠 on 15-12-2016.
  */
 
-public class MyStocksDetailActivity extends Activity{
+public class MyStocksDetailActivity extends AppCompatActivity{
     public final String DETAIL_ACTIVITY = MyStocksDetailActivity.class.getSimpleName();
     public String stockSymbol;
+    public String stockBidPrice;
     LineChart stockChart;
     Date currentDate;
     Calendar cal;
@@ -48,12 +52,20 @@ public class MyStocksDetailActivity extends Activity{
     public String endDate;
     public String queryString;
     public final String AMBER = "#FFC107";
+    TextView bid_price_text_view;
+    TextView start_date_text_view;
+    TextView end_date_text_view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
         stockSymbol = getIntent().getStringExtra("Stock_Symbol");
+        stockBidPrice = getIntent().getStringExtra("Bid_price");
+
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
+
 
         cal = Calendar.getInstance();
         currentDate = cal.getTime();
@@ -80,6 +92,13 @@ public class MyStocksDetailActivity extends Activity{
             public void onResponse(Call<HistoricalDataResponse> call, Response<HistoricalDataResponse> response) {
                 setContentView(R.layout.detail_activity_my_stocks);
                 stockChart = (LineChart) findViewById(R.id.historicDataChart);
+                bid_price_text_view = (TextView) findViewById(R.id.bid_price_detail);
+                start_date_text_view = (TextView) findViewById(R.id.start_date_detail);
+                end_date_text_view = (TextView) findViewById(R.id.end_date_detail);
+
+                bid_price_text_view.setText(stockBidPrice);
+                start_date_text_view.setText(startDate);
+                end_date_text_view.setText(endDate);
 
                 List<Entry> chartEntries = new ArrayList<Entry>(); // Data to be plotted in the chart
                 ArrayList<String> xVals = new ArrayList<String>(); // Holds the labels to be displayed on the x-axis of the chart
@@ -90,9 +109,9 @@ public class MyStocksDetailActivity extends Activity{
                         chartEntries.add(new Entry(Float.valueOf(stockClose),i));
 
                         if(i==0)
-                            xVals.add(startDate);
+                            xVals.add(startDate.toString());
                         else if(i==response.body().query.results.quote.size()-10)
-                            xVals.add(endDate);
+                            xVals.add(endDate.toString());
                         else xVals.add("");
 
                     }
@@ -127,8 +146,14 @@ public class MyStocksDetailActivity extends Activity{
                     ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
                     dataSets.add(lineDataSet);
 
+                    Description desc = new Description();
+                    desc.setText(" ");
                     LineData lineData = new LineData(dataSets);
                     stockChart.setData(lineData);
+                    stockChart.setDrawBorders(true);
+                    stockChart.setBorderColor(R.color.grey_600);
+                    //stockChart.setBorderColor(R.color.blue_500);
+                    stockChart.setDescription(desc);
                     stockChart.invalidate();
                 }
 

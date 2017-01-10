@@ -25,6 +25,7 @@
       fab:fab_colorPressed="@color/amber_600"
       fab:fab_shadow="true"
       fab:fab_type="normal"
+      android:contentDescription="@string/fab_content_desc"
       />
 
     <LinearLayout

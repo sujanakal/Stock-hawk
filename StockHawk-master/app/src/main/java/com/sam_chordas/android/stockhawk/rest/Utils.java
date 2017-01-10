@@ -3,12 +3,14 @@ package com.sam_chordas.android.stockhawk.rest;
 import android.content.ContentProviderOperation;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.Gravity;
 import android.widget.Toast;
 
 import com.sam_chordas.android.stockhawk.data.QuoteColumns;
 import com.sam_chordas.android.stockhawk.data.QuoteProvider;
 import com.sam_chordas.android.stockhawk.service.StockIntentService;
 import com.sam_chordas.android.stockhawk.service.StockTaskService;
+import com.sam_chordas.android.stockhawk.ui.MyStocksActivity;
 
 import java.util.ArrayList;
 import org.json.JSONArray;
@@ -85,7 +87,6 @@ public class Utils {
       String change = jsonObject.getString("Change");
       if(change != "null" && change != null){
         builder.withValue(QuoteColumns.SYMBOL, jsonObject.getString("symbol"));
-        Log.d("UTILS",jsonObject.getString("Bid"));
         builder.withValue(QuoteColumns.BIDPRICE, truncateBidPrice(jsonObject.getString("Bid")));
         builder.withValue(QuoteColumns.PERCENT_CHANGE, truncateChange(
                 jsonObject.getString("ChangeinPercent"), true));
@@ -99,6 +100,7 @@ public class Utils {
 
         return builder.build();
       }
+
       /*builder.withValue(QuoteColumns.SYMBOL, jsonObject.getString("symbol"));
         Log.d("UTILS",jsonObject.getString("Bid"));
       builder.withValue(QuoteColumns.BIDPRICE, truncateBidPrice(jsonObject.getString("Bid")));

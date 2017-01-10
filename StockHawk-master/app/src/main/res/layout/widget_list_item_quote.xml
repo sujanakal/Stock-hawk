@@ -1,44 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:paddingLeft="@dimen/main_activity_left_padding"
-    android:paddingRight="@dimen/main_activity_right_padding"
-    android:id="@+id/widget_list_item"
-    >
-    <TextView
-        android:id="@+id/stock_symbol"
-        style="@style/StockSymbolTextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="left|center_vertical"
-        tools:text="GOOG"
-        />
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="right"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/card_view_margin_start"
+    android:layout_marginEnd="@dimen/card_view_margin_end"
+    android:layout_marginTop="@dimen/card_view_margin_top"
+    android:layout_marginBottom="@dimen/card_view_margin_bottom"
+    app:cardBackgroundColor="@color/cardview_light_background"
+    android:elevation="@dimen/card_view_elevation"
+    app:cardCornerRadius="@dimen/card_view_corner_radius"
+    android:layout_marginLeft="@dimen/card_view_margin_start"
+    android:layout_marginRight="@dimen/card_view_margin_end">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/stock_quote_list_height"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/stock_quote_list_padding_left"
+        android:paddingRight="@dimen/stock_quote_list_padding_right"
+        android:paddingStart="@dimen/stock_quote_list_padding_start"
+        android:paddingEnd="@dimen/stock_quote_list_padding_end"
+        android:id="@+id/widget_list_item"
         >
         <TextView
-            android:id="@+id/bid_price"
-            style="@style/BidPriceTextStyle"
+            android:id="@+id/stock_symbol"
+            style="@style/StockSymbolTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingRight="10sp"
-            android:text="@string/bid_price"
+            android:gravity="left|center_vertical"
+            tools:text="@string/stock_symbol"
             />
-        <TextView
-            android:id="@+id/change"
-            android:background="@drawable/percent_change_pill"
-            style="@style/PercentChangeTextStyle"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="@dimen/linear_layout_zero_weight"
             android:layout_height="wrap_content"
-            android:paddingLeft="3dp"
-            android:paddingRight="3dp"
-            tools:text="100%"
-            />
+            android:layout_weight="1"
+            android:gravity="right"
+            >
+            <TextView
+                android:id="@+id/bid_price"
+                style="@style/BidPriceTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/bid_price_padding_right"
+                android:paddingEnd="@dimen/bid_price_padding_end"
+                android:text="@string/bid_price"
+                />
+            <TextView
+                android:id="@+id/change"
+                android:background="@drawable/percent_change_pill"
+                style="@style/PercentChangeTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/change_padding_left"
+                android:paddingRight="@dimen/change_padding_right"
+                android:paddingStart="@dimen/change_padding_start"
+                android:paddingEnd="@dimen/change_padding_end"
+                tools:text="@string/change_percent"
+                />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</android.support.v7.widget.CardView>

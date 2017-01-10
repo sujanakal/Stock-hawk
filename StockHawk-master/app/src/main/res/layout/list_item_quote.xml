@@ -17,11 +17,13 @@
   <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="72dp"
+    android:layout_height="@dimen/stock_quote_list_height"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
+    android:paddingLeft="@dimen/stock_quote_list_padding_left"
+    android:paddingRight="@dimen/stock_quote_list_padding_right"
+      android:paddingStart="@dimen/stock_quote_list_padding_start"
+      android:paddingEnd="@dimen/stock_quote_list_padding_end"
     >
   <TextView
       android:id="@+id/stock_symbol"
@@ -29,10 +31,11 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:gravity="left|center_vertical"
-      tools:text="GOOG"
+      tools:text="@string/stock_symbol"
+
       />
   <LinearLayout
-      android:layout_width="0dp"
+      android:layout_width="@dimen/linear_layout_zero_weight"
       android:layout_height="wrap_content"
       android:layout_weight="1"
       android:gravity="right"
@@ -42,7 +45,8 @@
         style="@style/BidPriceTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingRight="10sp"
+        android:paddingRight="@dimen/bid_price_padding_right"
+        android:paddingEnd="@dimen/bid_price_padding_end"
         android:text="@string/bid_price"
         />
     <TextView
@@ -51,9 +55,11 @@
         style="@style/PercentChangeTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="3dp"
-        android:paddingRight="3dp"
-        tools:text="100%"
+        android:paddingLeft="@dimen/change_padding_left"
+        android:paddingRight="@dimen/change_padding_right"
+        android:paddingStart="@dimen/change_padding_start"
+        android:paddingEnd="@dimen/change_padding_end"
+        tools:text="@string/change_percent"
         />
   </LinearLayout>
 </LinearLayout>
