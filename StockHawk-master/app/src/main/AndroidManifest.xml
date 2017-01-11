@@ -44,7 +44,8 @@
         <provider
             android:name=".data.generated.QuoteProvider"
             android:authorities="com.sam_chordas.android.stockhawk.data.QuoteProvider"
-            android:exported="false" />
+            android:grantUriPermissions="true"
+            android:exported="true" />
 
         <receiver android:name=".widget.StockWidgetProvider">
             <intent-filter>

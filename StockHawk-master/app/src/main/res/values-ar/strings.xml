@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Stock Hawk</string>
-    <string name="Bid_price_detail">سعر:</string>
+    <string name="detail_stock_created">سعر</string>
     <string name="action_change_units">وحدات التغيير</string>
     <string name="action_example">Example action</string>
     <string name="content_test">بحث عن الأوراق المالية رمز</string>
@@ -9,18 +9,18 @@
     <string name="action_settings">إعدادات</string>
     <string name="bidprice_text_view_content_desc">المزايدة السعر</string>
     <string name="change_content_desc">التغيير</string>
-    <string name="detail_bid_price">سعر</string>
+    <string name="stock_created">سعر</string>
     <string name="detail_end_date">تاريخ الانتهاء</string>
     <string name="detail_start_date">تاريخ البدء</string>
     <string name="empty_database">لا يوجد مخزون معلومات متوفرة</string>
     <string name="empty_textview_text">عفوا! هل أنت متصل بالإنترنت؟ يرجى التحقق من اتصال الإنترنت الخاص بك وحاول مرة أخرى.</string>
-    <string name="end_date">تاريخ الانتهاء:</string>
+    <string name="end_date">تاريخ الانتهاء</string>
     <string name="fab_content_desc">إضافة أو بحث رموز الأسهم. أدخل الرمز في مربع الحوار للبحث أو إضافة.</string>
     <string name="grap_content_desc">البيانات التاريخية للرمز السهم</string>
     <string name="network_toast">اه اوه! هذا التطبيق يتطلب اتصال بالإنترنت</string>
     <string name="saved_stock">يتم حفظ هذه الأسهم بالفعل!</string>
     <string name="settings_content_desc">إعدادات</string>
-    <string name="start_date">تاريخ البدء:</string>
+    <string name="start_date">تاريخ البدء</string>
     <string name="stock_symbol_not_found">لم يتم العثور على رمز السهم!</string>
     <string name="stock_symbol_text_view_content_desc">رمز السهم</string>
     <string name="symbol_search">رمز البحث</string>

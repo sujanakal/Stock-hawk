@@ -32,6 +32,8 @@ public class StockWidgetProvider extends AppWidgetProvider {
             setStockRemoteAdapterV11(context,views);
         }
 
+        views.setEmptyView(R.id.widget_list, R.id.widget_empty_view);
+
         Intent intent = new Intent(context, MyStocksActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
         views.setPendingIntentTemplate(R.id.widget_list,pendingIntent);

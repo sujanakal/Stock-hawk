@@ -88,6 +88,11 @@ public class Utils {
       if(change != "null" && change != null){
         builder.withValue(QuoteColumns.SYMBOL, jsonObject.getString("symbol"));
         builder.withValue(QuoteColumns.BIDPRICE, truncateBidPrice(jsonObject.getString("Bid")));
+        builder.withValue(QuoteColumns.NAME, jsonObject.getString("Name"));
+
+        Log.d("STOCK_NAME:",jsonObject.getString("Name"));
+        Log.d("NAME_COLUMN_ID:",QuoteColumns.NAME);
+
         builder.withValue(QuoteColumns.PERCENT_CHANGE, truncateChange(
                 jsonObject.getString("ChangeinPercent"), true));
         builder.withValue(QuoteColumns.CHANGE, truncateChange(change, false));

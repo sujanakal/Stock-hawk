@@ -1,12 +1,9 @@
 package com.sam_chordas.android.stockhawk.ui;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -52,7 +49,7 @@ public class MyStocksDetailActivity extends AppCompatActivity{
     public String endDate;
     public String queryString;
     public final String AMBER = "#FFC107";
-    TextView bid_price_text_view;
+    TextView stock_created_text_view;
     TextView start_date_text_view;
     TextView end_date_text_view;
 
@@ -91,12 +88,14 @@ public class MyStocksDetailActivity extends AppCompatActivity{
             @Override
             public void onResponse(Call<HistoricalDataResponse> call, Response<HistoricalDataResponse> response) {
                 setContentView(R.layout.detail_activity_my_stocks);
+                String created = response.body().query.created;
+
                 stockChart = (LineChart) findViewById(R.id.historicDataChart);
-                bid_price_text_view = (TextView) findViewById(R.id.bid_price_detail);
+                stock_created_text_view = (TextView) findViewById(R.id.bid_price_detail);
                 start_date_text_view = (TextView) findViewById(R.id.start_date_detail);
                 end_date_text_view = (TextView) findViewById(R.id.end_date_detail);
 
-                bid_price_text_view.setText(stockBidPrice);
+                stock_created_text_view.setText(created);
                 start_date_text_view.setText(startDate);
                 end_date_text_view.setText(endDate);
 
@@ -108,11 +107,13 @@ public class MyStocksDetailActivity extends AppCompatActivity{
                         String stockClose = response.body().query.results.quote.get(i).Close;
                         chartEntries.add(new Entry(Float.valueOf(stockClose),i));
 
-                        if(i==0)
+                        /*if(i==0)
                             xVals.add(startDate.toString());
                         else if(i==response.body().query.results.quote.size()-10)
                             xVals.add(endDate.toString());
-                        else xVals.add("");
+                        else xVals.add("");*/
+
+                        xVals.add(response.body().query.results.quote.get(i).Date);
 
                     }
                     Collections.sort(chartEntries,new EntryXComparator());
@@ -142,13 +143,16 @@ public class MyStocksDetailActivity extends AppCompatActivity{
                     lineDataSet.setCircleColorHole(Color.WHITE);
                     lineDataSet.setValueTextColor(Color.BLACK);
                     lineDataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
+                    lineDataSet.setDrawFilled(true);
+                    lineDataSet.setCircleSize(3f);
+                    lineDataSet.setCircleHoleRadius(1.5f);
 
                     ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
                     dataSets.add(lineDataSet);
 
                     Description desc = new Description();
                     desc.setText(" ");
-                    LineData lineData = new LineData(dataSets);
+                    LineData lineData = new LineData(dataSets);      //////////
                     stockChart.setData(lineData);
                     stockChart.setDrawBorders(true);
                     stockChart.setBorderColor(R.color.grey_600);

@@ -40,8 +40,18 @@
             android:id="@+id/widget_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/list_item_quote">
+            tools:listitem="@layout/list_item_quote"
+            >
         </ListView>
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/widget_empty_view"
+            android:layout_height="match_parent"
+            android:text="@string/empty_widget_view"
+            style="@style/WidgetEmptyViewStyle"
+            android:gravity="center_horizontal|center_vertical"
+            android:visibility="gone"
+            />
 
     </LinearLayout>
 

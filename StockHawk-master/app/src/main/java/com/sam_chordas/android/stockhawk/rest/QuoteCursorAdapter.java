@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,11 +54,14 @@ public class QuoteCursorAdapter extends CursorRecyclerViewAdapter<QuoteCursorAda
     String bidPrice = cursor.getString(cursor.getColumnIndex("bid_price"));
     String percentChange = cursor.getString(cursor.getColumnIndex("percent_change"));
     String change = cursor.getString(cursor.getColumnIndex("change"));
+    Log.d("STOCK_NAME:",String.valueOf(cursor.getColumnIndex("name")));
+    //String name = cursor.getString(cursor.getColumnIndex("name"));
 
     String symbolContentDesc = mContext.getString(R.string.stock_symbol_text_view_content_desc) + symbol;
     String bidPriceContentDesc = mContext.getString(R.string.bidprice_text_view_content_desc) + bidPrice;
     String changeContentDesc = mContext.getString(R.string.change_percent_change_content_desc) + change;
     String percentChangeContentDesc = mContext.getString(R.string.change_content_desc) + percentChange;
+   // String nameContentDesc = mContext.getString(R.string.name_content_desc) + name;
 
             // viewHolder.symbol.setText(cursor.getString(cursor.getColumnIndex("symbol")));
     viewHolder.symbol.setText(symbol);
@@ -65,6 +69,9 @@ public class QuoteCursorAdapter extends CursorRecyclerViewAdapter<QuoteCursorAda
    // viewHolder.bidPrice.setText(cursor.getString(cursor.getColumnIndex("bid_price")));
     viewHolder.bidPrice.setText(bidPrice);
     viewHolder.bidPrice.setContentDescription(bidPriceContentDesc);
+
+    /*viewHolder.name.setText(name);
+    viewHolder.name.setContentDescription(nameContentDesc);*/
 
     int sdk = Build.VERSION.SDK_INT;
     if (cursor.getInt(cursor.getColumnIndex("is_up")) == 1){
@@ -112,12 +119,15 @@ public class QuoteCursorAdapter extends CursorRecyclerViewAdapter<QuoteCursorAda
     public final TextView symbol;
     public final TextView bidPrice;
     public final TextView change;
+    public final TextView name;
     public ViewHolder(View itemView){
       super(itemView);
+
       symbol = (TextView) itemView.findViewById(R.id.stock_symbol);
       symbol.setTypeface(robotoLight);
       bidPrice = (TextView) itemView.findViewById(R.id.bid_price);
       change = (TextView) itemView.findViewById(R.id.change);
+      name = (TextView) itemView.findViewById(R.id.stock_name);
     }
 
     @Override

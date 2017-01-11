@@ -14,11 +14,12 @@
     <string name="add_widget" translatable="false">Add widget</string>
     <string name="widget_header" translatable="false">Stock Hawk</string>
     <string name="bid_price" translatable="false">1000.0</string>
+    <string name="stock_name">google Inc.</string>
     <string name="change_percent" translatable="false">100%</string>
     <string name="stock_symbol" translatable="false">GOOG</string>
-    <string name="Bid_price_detail">Bid Price: </string>
-    <string name="start_date">Start Date: </string>
-    <string name="end_date">End Date: </string>
+    <string name="detail_stock_created">Created</string>
+    <string name="start_date">Start Date </string>
+    <string name="end_date">End Date </string>
     <string name="empty_textview_text">Oops! Are you connected to internet?\nPlease check your Internet connection and try again.</string>
 
     <!--Content descriptions for UI units-->
@@ -30,13 +31,17 @@
     <string name="menu_content_desc" translatable="false">Menu</string>
     <string name="settings_content_desc">Settings</string>
     <string name="grap_content_desc">Historical data for the stock symbol</string>
+    <string name="name_content_desc">Name</string>
     
-    <string name="detail_bid_price">Bid price</string>
+    <string name="stock_created">Created</string>
     <string name="detail_start_date">Start date</string>
     <string name="detail_end_date">End date</string>
 
     <!--Strings used inside the activities-->
     <string name="stock_symbol_not_found">Stock symbol could not be found!</string>
     <string name="saved_stock">This stock is already saved!</string>
+
+    <!--Widget-->
+    <string name="empty_widget_view">No data available</string>
 
 </resources>

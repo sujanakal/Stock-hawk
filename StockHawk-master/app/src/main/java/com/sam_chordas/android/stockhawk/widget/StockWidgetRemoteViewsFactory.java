@@ -3,6 +3,7 @@ package com.sam_chordas.android.stockhawk.widget;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
@@ -50,6 +51,7 @@ public class StockWidgetRemoteViewsFactory implements RemoteViewsService.RemoteV
 
         //actual
         cursor = context.getContentResolver().query(QuoteProvider.Quotes.CONTENT_URI,QUOTE_COLUMN,null,null,null);
+        Log.d("WIDGET_FACTORY: ",cursor.toString());
 
         try{
             for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()){
@@ -66,11 +68,25 @@ public class StockWidgetRemoteViewsFactory implements RemoteViewsService.RemoteV
 
     @Override
     public void onCreate() {
-        initData();
     }
 
     @Override
     public void onDataSetChanged() {
+
+        Thread thread = new Thread() {
+            public void run() {
+                query();
+            }
+        };
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            Log.d("WIDGET_FACTORY", "Thread interrupted !");
+        }
+    }
+
+    private void query() {
         initData();
     }
 
