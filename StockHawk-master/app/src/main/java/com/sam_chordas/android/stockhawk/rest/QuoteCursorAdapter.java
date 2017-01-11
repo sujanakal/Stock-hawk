@@ -55,23 +55,22 @@ public class QuoteCursorAdapter extends CursorRecyclerViewAdapter<QuoteCursorAda
     String percentChange = cursor.getString(cursor.getColumnIndex("percent_change"));
     String change = cursor.getString(cursor.getColumnIndex("change"));
     Log.d("STOCK_NAME:",String.valueOf(cursor.getColumnIndex("name")));
-    //String name = cursor.getString(cursor.getColumnIndex("name"));
+    String name = cursor.getString(cursor.getColumnIndex("name"));
 
     String symbolContentDesc = mContext.getString(R.string.stock_symbol_text_view_content_desc) + symbol;
     String bidPriceContentDesc = mContext.getString(R.string.bidprice_text_view_content_desc) + bidPrice;
     String changeContentDesc = mContext.getString(R.string.change_percent_change_content_desc) + change;
     String percentChangeContentDesc = mContext.getString(R.string.change_content_desc) + percentChange;
-   // String nameContentDesc = mContext.getString(R.string.name_content_desc) + name;
+    String nameContentDesc = mContext.getString(R.string.name_content_desc) + name;
 
-            // viewHolder.symbol.setText(cursor.getString(cursor.getColumnIndex("symbol")));
     viewHolder.symbol.setText(symbol);
     viewHolder.symbol.setContentDescription(symbolContentDesc);
-   // viewHolder.bidPrice.setText(cursor.getString(cursor.getColumnIndex("bid_price")));
+
     viewHolder.bidPrice.setText(bidPrice);
     viewHolder.bidPrice.setContentDescription(bidPriceContentDesc);
 
-    /*viewHolder.name.setText(name);
-    viewHolder.name.setContentDescription(nameContentDesc);*/
+    viewHolder.name.setText(name);
+    viewHolder.name.setContentDescription(nameContentDesc);
 
     int sdk = Build.VERSION.SDK_INT;
     if (cursor.getInt(cursor.getColumnIndex("is_up")) == 1){
@@ -92,11 +91,10 @@ public class QuoteCursorAdapter extends CursorRecyclerViewAdapter<QuoteCursorAda
       }
     }
     if (Utils.showPercent){
-      //viewHolder.change.setText(cursor.getString(cursor.getColumnIndex("percent_change")));
       viewHolder.change.setText(percentChange);
       viewHolder.change.setContentDescription(percentChangeContentDesc);
-    } else{
-     // viewHolder.change.setText(cursor.getString(cursor.getColumnIndex("change")));
+    }
+    else{
       viewHolder.change.setText(change);
       viewHolder.change.setContentDescription(changeContentDesc);
     }

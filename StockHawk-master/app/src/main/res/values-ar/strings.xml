@@ -24,4 +24,6 @@
     <string name="stock_symbol_not_found">لم يتم العثور على رمز السهم!</string>
     <string name="stock_symbol_text_view_content_desc">رمز السهم</string>
     <string name="symbol_search">رمز البحث</string>
+    <string name="empty_widget_view">لا تتوافر بيانات</string>
+    <string name="name_content_desc">اسم</string>
 </resources>

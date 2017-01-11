@@ -1,17 +1,9 @@
 package com.sam_chordas.android.stockhawk.rest;
 
 import android.content.ContentProviderOperation;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
-import android.view.Gravity;
-import android.widget.Toast;
-
 import com.sam_chordas.android.stockhawk.data.QuoteColumns;
 import com.sam_chordas.android.stockhawk.data.QuoteProvider;
-import com.sam_chordas.android.stockhawk.service.StockIntentService;
-import com.sam_chordas.android.stockhawk.service.StockTaskService;
-import com.sam_chordas.android.stockhawk.ui.MyStocksActivity;
-
 import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONException;
