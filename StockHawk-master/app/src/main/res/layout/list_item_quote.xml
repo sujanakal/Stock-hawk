@@ -30,7 +30,7 @@
       style="@style/StockSymbolTextStyle"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:gravity="left|center_vertical"
+      android:gravity="start|center_vertical"
       tools:text="@string/stock_symbol"
 
       />
@@ -38,7 +38,7 @@
       android:layout_width="@dimen/linear_layout_zero_weight"
       android:layout_height="wrap_content"
       android:layout_weight="1"
-      android:gravity="right"
+      android:gravity="end"
       >
     <TextView
         android:id="@+id/bid_price"
