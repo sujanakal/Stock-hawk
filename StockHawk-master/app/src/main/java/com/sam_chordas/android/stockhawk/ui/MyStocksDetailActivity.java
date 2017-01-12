@@ -50,7 +50,7 @@ public class MyStocksDetailActivity extends AppCompatActivity{
     public String endDate;
     public String queryString;
     public final String AMBER = "#FFC107";
-    TextView stock_created_text_view;
+    TextView detail_bid_price;
     TextView start_date_text_view;
     TextView end_date_text_view;
 
@@ -92,11 +92,11 @@ public class MyStocksDetailActivity extends AppCompatActivity{
                 String created = response.body().query.created;
 
                 stockChart = (LineChart) findViewById(R.id.historicDataChart);
-                stock_created_text_view = (TextView) findViewById(R.id.bid_price_detail);
+                detail_bid_price = (TextView) findViewById(R.id.bid_price_detail);
                 start_date_text_view = (TextView) findViewById(R.id.start_date_detail);
                 end_date_text_view = (TextView) findViewById(R.id.end_date_detail);
 
-                stock_created_text_view.setText(created);
+                detail_bid_price.setText(stockBidPrice);
                 start_date_text_view.setText(startDate);
                 end_date_text_view.setText(endDate);
 

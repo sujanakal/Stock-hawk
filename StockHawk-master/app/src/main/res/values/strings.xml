@@ -35,7 +35,7 @@
     <string name="grap_content_desc">Historical data for the stock symbol</string>
     <string name="name_content_desc">Name</string>
     
-    <string name="stock_created">Created</string>
+    <string name="bid_price_detail">Bid price</string>
     <string name="detail_start_date">Start date</string>
     <string name="detail_end_date">End date</string>
 

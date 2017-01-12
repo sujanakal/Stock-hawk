@@ -170,7 +170,7 @@ public class QuoteCursorAdapter extends CursorRecyclerViewAdapter<QuoteCursorAda
     public final TextView symbol;
     public final TextView bidPrice;
     public final TextView change;
-    public final TextView name;
+//    public final TextView name;
     public ViewHolder(View itemView){
       super(itemView);
 
@@ -178,7 +178,7 @@ public class QuoteCursorAdapter extends CursorRecyclerViewAdapter<QuoteCursorAda
       symbol.setTypeface(robotoLight);
       bidPrice = (TextView) itemView.findViewById(R.id.bid_price);
       change = (TextView) itemView.findViewById(R.id.change);
-      name = (TextView) itemView.findViewById(R.id.stock_name);
+//      name = (TextView) itemView.findViewById(R.id.stock_name);
     }
 
     @Override

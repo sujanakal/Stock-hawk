@@ -11,7 +11,7 @@
     <string name="action_settings">إعدادات</string>
     <string name="bidprice_text_view_content_desc">المزايدة السعر</string>
     <string name="change_content_desc">التغيير</string>
-    <string name="stock_created">سعر</string>
+    <string name="bid_price_detail">سعر</string>
     <string name="detail_end_date">تاريخ الانتهاء</string>
     <string name="detail_start_date">تاريخ البدء</string>
     <string name="empty_database">لا يوجد مخزون معلومات متوفرة</string>
