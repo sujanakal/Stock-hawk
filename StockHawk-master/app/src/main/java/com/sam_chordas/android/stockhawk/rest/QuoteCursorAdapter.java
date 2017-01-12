@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -50,18 +51,70 @@ public class QuoteCursorAdapter extends CursorRecyclerViewAdapter<QuoteCursorAda
 
   @Override
   public void onBindViewHolder(final ViewHolder viewHolder, final Cursor cursor){
-    String symbol = cursor.getString(cursor.getColumnIndex("symbol"));
+    if (cursor != null){
+      String symbol = cursor.getString(cursor.getColumnIndex("symbol"));
+      String bidPrice = cursor.getString(cursor.getColumnIndex("bid_price"));
+      String percentChange = cursor.getString(cursor.getColumnIndex("percent_change"));
+      String change = cursor.getString(cursor.getColumnIndex("change"));
+      Log.d("STOCK_NAME:",String.valueOf(cursor.getColumnIndex("name")));
+    /*String name = cursor.getString(cursor.getColumnIndex("name"));*/
+
+      String symbolContentDesc = mContext.getString(R.string.stock_symbol_text_view_content_desc) + symbol;
+      String bidPriceContentDesc = mContext.getString(R.string.bidprice_text_view_content_desc) + bidPrice;
+      String changeContentDesc = mContext.getString(R.string.change_percent_change_content_desc) + change;
+      String percentChangeContentDesc = mContext.getString(R.string.change_content_desc) + percentChange;
+    /*String nameContentDesc = mContext.getString(R.string.name_content_desc) + name;*/
+
+      viewHolder.symbol.setText(symbol);
+      viewHolder.symbol.setContentDescription(symbolContentDesc);
+
+      viewHolder.bidPrice.setText(bidPrice);
+      viewHolder.bidPrice.setContentDescription(bidPriceContentDesc);
+
+    /*viewHolder.name.setText(name);
+    viewHolder.name.setContentDescription(nameContentDesc);*/
+
+      int sdk = Build.VERSION.SDK_INT;
+      if (cursor.getInt(cursor.getColumnIndex("is_up")) == 1){
+        if (sdk < Build.VERSION_CODES.JELLY_BEAN){
+          viewHolder.change.setBackgroundDrawable(
+                  mContext.getResources().getDrawable(R.drawable.percent_change_pill_green));
+        }else {
+          viewHolder.change.setBackground(
+                  mContext.getResources().getDrawable(R.drawable.percent_change_pill_green));
+        }
+      } else{
+        if (sdk < Build.VERSION_CODES.JELLY_BEAN) {
+          viewHolder.change.setBackgroundDrawable(
+                  mContext.getResources().getDrawable(R.drawable.percent_change_pill_red));
+        } else{
+          viewHolder.change.setBackground(
+                  mContext.getResources().getDrawable(R.drawable.percent_change_pill_red));
+        }
+      }
+      if (Utils.showPercent){
+        viewHolder.change.setText(percentChange);
+        viewHolder.change.setContentDescription(percentChangeContentDesc);
+      }
+      else{
+        viewHolder.change.setText(change);
+        viewHolder.change.setContentDescription(changeContentDesc);
+      }
+    }
+    else{
+    }
+    /*String symbol = cursor.getString(cursor.getColumnIndex("symbol"));
     String bidPrice = cursor.getString(cursor.getColumnIndex("bid_price"));
     String percentChange = cursor.getString(cursor.getColumnIndex("percent_change"));
     String change = cursor.getString(cursor.getColumnIndex("change"));
     Log.d("STOCK_NAME:",String.valueOf(cursor.getColumnIndex("name")));
-    String name = cursor.getString(cursor.getColumnIndex("name"));
+    *//*String name = cursor.getString(cursor.getColumnIndex("name"));*//*
 
     String symbolContentDesc = mContext.getString(R.string.stock_symbol_text_view_content_desc) + symbol;
     String bidPriceContentDesc = mContext.getString(R.string.bidprice_text_view_content_desc) + bidPrice;
     String changeContentDesc = mContext.getString(R.string.change_percent_change_content_desc) + change;
     String percentChangeContentDesc = mContext.getString(R.string.change_content_desc) + percentChange;
-    String nameContentDesc = mContext.getString(R.string.name_content_desc) + name;
+    *//*String nameContentDesc = mContext.getString(R.string.name_content_desc) + name;*//*
 
     viewHolder.symbol.setText(symbol);
     viewHolder.symbol.setContentDescription(symbolContentDesc);
@@ -69,8 +122,8 @@ public class QuoteCursorAdapter extends CursorRecyclerViewAdapter<QuoteCursorAda
     viewHolder.bidPrice.setText(bidPrice);
     viewHolder.bidPrice.setContentDescription(bidPriceContentDesc);
 
-    viewHolder.name.setText(name);
-    viewHolder.name.setContentDescription(nameContentDesc);
+    *//*viewHolder.name.setText(name);
+    viewHolder.name.setContentDescription(nameContentDesc);*//*
 
     int sdk = Build.VERSION.SDK_INT;
     if (cursor.getInt(cursor.getColumnIndex("is_up")) == 1){
@@ -97,7 +150,7 @@ public class QuoteCursorAdapter extends CursorRecyclerViewAdapter<QuoteCursorAda
     else{
       viewHolder.change.setText(change);
       viewHolder.change.setContentDescription(changeContentDesc);
-    }
+    }*/
   }
 
   @Override public void onItemDismiss(int position) {

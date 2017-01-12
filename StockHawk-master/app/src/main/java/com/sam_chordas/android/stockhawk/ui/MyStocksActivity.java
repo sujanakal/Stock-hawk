@@ -129,14 +129,23 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
                 mCursor.moveToFirst();
                 mCursor.move(position);
 
-                Intent detailIntent = new Intent(mContext, MyStocksDetailActivity.class);
+                if(isConnected){
+                  Intent detailIntent = new Intent(mContext, MyStocksDetailActivity.class);
+                  detailIntent.putExtra(STOCK_SYMBOL, mCursor.getString(mCursor.getColumnIndex("symbol")));
+                  detailIntent.putExtra(BID_PRICE, mCursor.getString(mCursor.getColumnIndex("bid_price")));
+                  startActivity(detailIntent);
+                }
+                else {
+                  displayToast(mContext.getString(R.string.no_internet_for_detail_toast));
+                }
+
+                /*Intent detailIntent = new Intent(mContext, MyStocksDetailActivity.class);
                 detailIntent.putExtra(STOCK_SYMBOL, mCursor.getString(mCursor.getColumnIndex("symbol")));
                 detailIntent.putExtra(BID_PRICE, mCursor.getString(mCursor.getColumnIndex("bid_price")));
-                startActivity(detailIntent);
+                startActivity(detailIntent);*/
               }
             }));
     recyclerView.setAdapter(mCursorAdapter);
-
 
     FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
       /*//fab.setBackgroundColor(getResources().getColor(R.color.amber_500));
@@ -165,7 +174,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
                         toast.setGravity(Gravity.CENTER, Gravity.CENTER, 0);
                         toast.show();*/
 
-                        searchSymbolToast(getString(R.string.saved_stock));
+                        displayToast(getString(R.string.saved_stock));
 
                         return;
                       } else {
@@ -287,11 +296,11 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
       toast.setGravity(Gravity.CENTER, Gravity.CENTER, 0);
       toast.show();*/
 
-      searchSymbolToast(getString(R.string.stock_symbol_not_found));
+      displayToast(getString(R.string.stock_symbol_not_found));
     }
   }
 
-  public void searchSymbolToast(String toastMessage){
+  public void displayToast(String toastMessage){
     Toast toast =
             Toast.makeText(mContext, toastMessage, Toast.LENGTH_LONG);
     toast.setGravity(Gravity.CENTER, Gravity.CENTER, 0);

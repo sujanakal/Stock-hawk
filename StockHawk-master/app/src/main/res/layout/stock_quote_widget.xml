@@ -16,7 +16,8 @@
             android:layout_height="wrap_content"
             android:background="@color/teal_500"
             android:orientation="horizontal"
-            android:padding="@dimen/widget_header_padding">
+            android:padding="@dimen/widget_header_padding"
+            >
             <ImageView
                 android:id="@+id/widget_img_launcher"
                 android:layout_width="@dimen/widget_app_icon_width"
@@ -26,15 +27,24 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="@string/widget_header"
-                android:layout_gravity="center_vertical"
+                android:layout_gravity="center|start"
                 android:textColor="@color/white"
                 android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textAlignment="viewStart"
                 android:textStyle="bold"
                 android:paddingStart="@dimen/widget_header_padding"
                 android:paddingLeft="@dimen/widget_header_padding"
                 android:paddingEnd="@dimen/widget_header_padding"
                 android:paddingRight="@dimen/widget_header_padding"/>
+            <!--<ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/refresh_white"
+                android:elevation="24dp"
+                android:layout_gravity="end"
+                />-->
         </LinearLayout>
         <ListView
             android:id="@+id/widget_list"

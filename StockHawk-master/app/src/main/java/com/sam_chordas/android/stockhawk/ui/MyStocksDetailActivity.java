@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -149,6 +150,9 @@ public class MyStocksDetailActivity extends AppCompatActivity{
 
                     ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
                     dataSets.add(lineDataSet);
+
+                    Legend legend = stockChart.getLegend();
+                    legend.setTextSize(20f);
 
                     Description desc = new Description();
                     desc.setText(" ");

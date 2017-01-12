@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Stock Hawk</string>
+    <string name="app_name">Hawk Stock</string>
+    <string name="no_internet_for_detail_toast">هذا يحتاج اتصال بالإنترنت!</string>
+    <string name="no_data">لا حفظ رموز الأسهم!</string>
     <string name="detail_stock_created">سعر</string>
     <string name="action_change_units">وحدات التغيير</string>
     <string name="action_example">Example action</string>

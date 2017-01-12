@@ -23,7 +23,7 @@ public class StockWidgetProvider extends AppWidgetProvider {
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.stock_quote_widget);
 
-
+        //views.removeAllViews(R.id.widget_list);
         // set remote adapter
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH){
             setStockRemoteAdapter(context,views);
@@ -40,6 +40,7 @@ public class StockWidgetProvider extends AppWidgetProvider {
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
+        views.removeAllViews(R.id.widget_list);
     }
 
     @SuppressWarnings("deprecation")
