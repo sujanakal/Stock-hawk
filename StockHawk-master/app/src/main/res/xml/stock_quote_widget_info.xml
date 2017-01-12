@@ -4,7 +4,7 @@
     android:initialLayout="@layout/stock_quote_widget"
     android:minHeight="110dp"
     android:minWidth="180dp"
-    android:previewImage="@mipmap/stockhawk_icon"
+    android:previewImage="@drawable/widget_image"
     android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="0"
     android:widgetCategory="home_screen">
